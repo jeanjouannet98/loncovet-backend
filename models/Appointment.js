@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const appointmentSchema = new Schema({
-    user: {
-        type: String,
-        ref: 'User',
-        required: [true, 'El usuario es requerido'],
-    },
     name: {
         type: String,
         required: [true, 'El nombre es requerido'],

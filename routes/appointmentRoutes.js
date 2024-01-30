@@ -29,9 +29,12 @@ router.delete('/:id', async (req, res) => {
 
 // Ruta para listar todas las citas
 router.get('/', async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
+
   try {
-    const appointments = await listAppointments();
-    res.status(200).json(appointments);
+    const { appointments, totalPages } = await listAppointments(page, limit);
+    res.status(200).json({ appointments, totalPages });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
